@@ -5,6 +5,8 @@
 1. 패키지 매니저 yarn berry
 2. react v18
 3. typescript
-4. webpack
-5. swc-loader
-6. jest
+4. scss
+5. webpack
+6. webpack-dev-server
+7. swc-loader
+8. jest
