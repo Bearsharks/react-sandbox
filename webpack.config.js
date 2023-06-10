@@ -61,5 +61,6 @@ module.exports = {
       favicon: path.join(__dirname, 'public/favicon.ico'),
       manifest: path.join(__dirname, 'public/manifest.json'),
     })
-  ]
+  ],
+  devtool: 'source-map',
 };
