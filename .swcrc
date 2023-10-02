@@ -1,10 +1,19 @@
 {
+"sourceMaps": true,
   "jsc": {
     "parser": {
       "syntax": "typescript",
       "tsx": true,
-      "decorators": false,
       "dynamicImport": true
-    }
+    },
+    "transform": {
+        "react": {
+            "pragma": "React.createElement",
+            "pragmaFrag": "React.Fragment",
+            "runtime": "automatic",
+        }
+      },
   }
 }
+
+

@@ -1,19 +1,17 @@
 // global dependencies
 const path = require('path');
-const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
+  entry: './src/test/index.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'index_bundle.js'
+    filename: 'index.js',
+    library: 'react-sandbox',
+    libraryTarget: 'umd',
   },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-    compress: true,
-    port: 8083,
+  optimization: {
+    minimize: false,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -21,46 +19,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/ ,
+        test: /\.(ts|tsx)$/,
+        loader: 'swc-loader',
         exclude: /node_modules/,
-        use: {
-          // `.swcrc` in the root can be used to configure swc
-          loader: "swc-loader"
-        },
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
-      },
-      {
-        test: /\.(s[c|a]ss|css)/i,
-        use: ["style-loader", "css-loader", "sass-loader"]
-      },
-      {
-        test: /\.(png|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'images/[name].[ext]?[hash]',
-            }
-          },
-        ],
       },
     ]
   },
-  plugins: [
-    new HTMLWebpackPlugin({
-      filename: "./index.html",
-      template: path.join(__dirname, 'public/index.html'),
-      favicon: path.join(__dirname, 'public/favicon.ico'),
-      manifest: path.join(__dirname, 'public/manifest.json'),
-    })
-  ],
   devtool: 'source-map',
+  externals: {
+    'react': 'umd react',
+    'react-dom': 'umd react-dom',
+    '@emotion/react': "umd @emotion/react"
+  }
 };
