@@ -1,12 +1,12 @@
-import React from 'react';
-import {css} from "@emotion/react";
+/** @jsx jsx */
+import React from "react";
+import {jsx, css} from "@emotion/react";
 
-function MymyEmo() {
+const MymyEmo = () => {
     return (
-        <div css={css`background-color: red;`}>
+        <div css={css`background-color:red;`}>
             testtest
         </div>
     );
 }
-
 export default MymyEmo;
